@@ -12,4 +12,4 @@ console.log("for absolute path:", path.resolve("harsh","lul.tsx") );
 
 console.log("for join:", path.join("harsh","lul.tsx"))
 
-console.log("for join:", path.parse("/Desktop/fullstack/Backend/DAY-2/harsh/lul.tsx "))
+console.log("for parse:", path.parse("/Desktop/fullstack/Backend/DAY-2/harsh/lul.tsx "))

@@ -13,8 +13,20 @@ http.createServer((req, res) => {
     }
 
     else if (url === "/users" && req.method === "POST") {
-        res.statusCode = 201;
-        res.end("POST: create user");
+        let body="";
+        req.on("data",(chunk)=>{
+                 body+=chunk;
+        })
+        req.on("end",()=>{
+             console.log("we have data now",body)
+             res.writeHead(200, { 'Content-Type': 'application/json' });
+             res.end( `for client${body}`)
+
+             
+        })
+        // agar hamna already response bhj diya hai to Aap do response ak sath nhi bbhj sakta
+        // res.statusCode = 201;
+        // res.end("POST: create user");
     }
 
     else {
@@ -23,3 +35,6 @@ http.createServer((req, res) => {
     }
 
 }).listen(8000, () => console.log("server started"));
+
+//data → data aa raha hai
+//end  → data aana complete ho gaya
