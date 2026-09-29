@@ -1,5 +1,7 @@
+// const { Readable, Writable } = require("stream");
+import { Readable } from "stream";
+import { Writable } from "stream";
 
-const { Readable, Writable } = require("stream");
 
 const readable = new Readable({
     read(){
@@ -8,6 +10,7 @@ const readable = new Readable({
         this.push(null);
     }
 })
+
 
 const writeable =new Writable({
     write(chunk,encoding,callback){
@@ -21,3 +24,4 @@ readable.pipe(writeable)
 writeable.on("finish",()=>{
     console.log("finally done ");
 })
+
