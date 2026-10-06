@@ -17,5 +17,4 @@ else{
     console.log("no arguments passed");
     console.log("pass like this npm start harsh 111 verma 21 jd");
     
-    
 }
