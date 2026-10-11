@@ -1,6 +1,6 @@
 
 // console.log(process.argv);
-// console.log(process.argv.slice(2));
+//console.log(process.argv.slice(2));
 
 
 const arr: String[]= process.argv.slice(2)
