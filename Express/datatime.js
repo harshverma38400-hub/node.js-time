@@ -60,6 +60,9 @@ app
 .get((req,res)=>{
     const id = Number(req.params.id)
      const user=  users.find(user=>user.id===id)
+     if(!user){
+        res.status(404).json({err:"use not found"})
+     }
        return res.json(user)
 }).patch((req,res)=>{
     return res.json({info:"nothing"})
@@ -75,15 +78,12 @@ app.post("/api/users",(req,res)=>{
           users.push({...body , id:users.length+1})
 
       fs.writeFile("./MOCK_DATA.json" ,JSON.stringify(users) ,(err,data)=>{
-        return res.json({
+        return res.status(201).json({
 
                 status:"succesfull ",
                 data: users.length  
-
         })
-      }  )
-
-
+    })
     
 })
 
