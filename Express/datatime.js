@@ -18,8 +18,6 @@ app.use((req,res,next)=>{
 
 })
 
-
-
 app.use((req,res,next)=>{
 
     req.usernmae="harsh"
@@ -34,9 +32,6 @@ app.use((req,res,next)=>{
     next()
     
 })
-
-
-
 
 
 // giving the data in the form of  json 
