@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import userss from "./MOCK_DATA.json" with {type:"json"}
+//import userss from "./MOCK_DATA.json" with {type:"json"}
 import express from "express"
 
 const app =express()
@@ -32,12 +32,22 @@ const userschema = new mongoose.Schema({
     },
     gender:{
         type:String
-    }
-})
+    },
+}, {timestamps:true })
 
 // then insert in model create a model
 
 const Users = new mongoose.model('user',userschema)
+
+app.get("/users",async(req,res)=>{
+     const fromdatabase =  await Users.find({})
+    const data = `
+       <ul>
+     ${fromdatabase.map(info=>`<li>${info.Firstname}-${info.email}</li>`).join("")}
+       </ul>
+    `
+    return res.send(data)
+})
 
 app.get("/userss",(req,res)=>{
 
@@ -56,10 +66,29 @@ app.post("/userss",async(req,res)=>{
     console.log(result);
     
   return res.status(201).json({msg:"successfully"})
+})
 
+
+
+app
+.route("/api/users/:id")
+.get(async(req,res)=>{
+
+    const userid = await Users.findById(req.params.id)
+    if(!userid){res.status(404).json({err : "useer not found"}) }
+    return res.json(userid)
+})
+.patch(async(req,res)=>{
+    const update = await Users.findByIdAndUpdate(req.params.id,{lastname:"heho  changed"})
+    return res.json({ message:"success"})
+})
+.delete(async(req,res)=>{
+    const del = await Users.findByIdAndDelete(req.params.id)
+    return res.json({ message:"success",
+        deletesection:del})
     
 })
 
-.listen(port,()=>{console.log("here we go again",port);
+app.listen(port,()=>{console.log("here we go again",port);
 })
 
