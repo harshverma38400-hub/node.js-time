@@ -38,7 +38,9 @@ const UpdateTheUserById = async(req,res)=>{
 
 const DeleteUserById = async(req,res)=>{
     const del = await Users.findByIdAndDelete(req.params.id)
-    return res.json({ message:"success"})
+    return res.json({ message:"success",
+        deleteid:del._id
+    })
     
 }
 

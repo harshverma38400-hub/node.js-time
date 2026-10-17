@@ -23,7 +23,7 @@ const port = 9000
 
 app.use(express.json());
 
-app.use(wrritingTheReq)
+app.use(wrritingTheReq("lol.txt"));
 
 //mongo connect
 
